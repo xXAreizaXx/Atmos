@@ -1,5 +1,5 @@
 
-# 🌤️ **Atmos - App**  
+# 🌤️ **Atmos**  
 > Una aplicación de clima desarrollada con **React Native**, **Expo Router** y siguiendo el patrón **Clean Architecture**.
 
 <div align="center">
@@ -15,7 +15,7 @@
 ---
 
 ## 📜 **Descripción**
-**Atmos - App** permite consultar el clima actual de cualquier ciudad ingresada. Consumiendo la API de **OpenWeather**, puedes visualizar información esencial como la temperatura, humedad, y el estado del clima, así como detalles adicionales como el viento y la sensación térmica.
+**Atmos** permite consultar el clima actual de cualquier ciudad ingresada. Consumiendo la API de **OpenWeather**, puedes visualizar información esencial como la temperatura, humedad, y el estado del clima, así como detalles adicionales como el viento y la sensación térmica.
 
 ---
 
@@ -63,8 +63,8 @@ src/
 
 ### **1. Clonar el Repositorio**
 ```bash
-git clone https://github.com/tu-usuario/weather-app.git
-cd weather-app
+git clone https://github.com/xXAreizaXx/Atmos.git
+cd atmos
 ```
 
 ### **2. Instalar Dependencias**
@@ -76,7 +76,8 @@ npm install
 Crea un archivo `.env` en la raíz del proyecto con la siguiente configuración:
 
 ```env
-API_KEY=tu_api_key_de_openweather
+EXPO_PUBLIC_API_URL=https://api.openweathermap.org/data/3.0/onecall
+EXPO_PUBLIC_API_KEY=4114a483282dd8b765cfcdeb3398a65e
 ```
 
 ### **4. Iniciar el Proyecto**
@@ -110,22 +111,15 @@ npm test
 ---
 
 ## 💡 **Próximos Pasos**
-- 🔄 Añadir funcionalidad de actualización automática.
+- 🌐 Internacionalización de la aplicación.
 - 📍 Integrar mapa interactivo para seleccionar ciudades.
-- 🕶️ Soporte para modo oscuro.
-
----
-
-## 🛠️ **Contribuciones**
-¡Las contribuciones son bienvenidas! Por favor, abre un _Pull Request_ o crea un _Issue_ para cualquier sugerencia.
+- 📱 Adaptar la aplicación para tablets y otros dispositivos.
+- 🔄 Añadir funcionalidad de actualización automática.
 
 ---
 
 ## 👨‍💻 **Autor**
-Creado con ❤️ por [Tu Nombre](https://github.com/tu-usuario).  
-[![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tu-usuario) [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/tu-usuario)
+Creado con ❤️ por [Jorge Areiza](https://github.com/xXAreizaXx).  
+[![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/xXAreizaXx) [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jorge-areiza/)
 
 ---
-
-## 📝 **Licencia**
-Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más información.
