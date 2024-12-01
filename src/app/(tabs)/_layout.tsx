@@ -38,6 +38,15 @@ export default function TabLayout() {
                     title: "Home"
                 }}
             />
+            <Tabs.Screen
+                name="detail"
+                options={{
+                    headerShown: false,
+                    tabBarIcon: ({ color }) => <TabBarIcon name="info-circle" color={color} />,
+                    tabBarStyle: { display: "none" },
+                    title: "Detail"
+                }}
+            />
         </Tabs>
     );
 }

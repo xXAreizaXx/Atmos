@@ -1,79 +1,70 @@
-// Dependencies
-import React from "react";
-import { TouchableOpacity, Text, StyleSheet, TextStyle, ViewStyle } from "react-native";
+// ReactJS & React Native
+import { TouchableOpacity, StyleSheet, ViewStyle, ColorSchemeName, useColorScheme } from "react-native";
+import { type ReactNode } from "react";
+
+// Constants
+import COLORS from "@constants/colors";
 
 type ButtonVariant = "primary" | "secondary";
 
 type TButton = {
-  variant: ButtonVariant;
-  onPress: () => void;
-  title: string;
+  children: ReactNode;
   disabled?: boolean;
+  onPress: () => void;
   style?: ViewStyle;
-  textStyle?: TextStyle;
+  variant: ButtonVariant;
 };
 
-const Button: React.FC<TButton> = ({
-    variant,
-    onPress,
-    title,
-    disabled = false,
-    style,
-    textStyle,
-}) => {
-    const styles = variant === "primary" ? primaryStyles : secondaryStyles;
+export default function Button({ children, disabled = false, onPress, style, variant }: TButton) {
+    // Hooks
+    const colorScheme = useColorScheme();
+    const styles = variant === "primary" ? createPrimaryStyles(colorScheme) : createSecondaryStyles(colorScheme);
 
     return (
         <TouchableOpacity
-            style={[styles.button, disabled && styles.disabled, style]}
-            onPress={onPress}
             disabled={disabled}
+            onPress={onPress}
+            style={[styles.button, disabled && styles.disabled, style]}
         >
-            <Text style={[styles.text, textStyle]}>{title}</Text>
+            {children}
         </TouchableOpacity>
     );
 };
 
-// Primary Button Styles
-const primaryStyles = StyleSheet.create({
-    button: {
-        backgroundColor: "#007bff",
-        paddingVertical: 12,
-        paddingHorizontal: 24,
-        borderRadius: 8,
-        alignItems: "center",
-    },
-    text: {
-        color: "#ffffff",
-        fontSize: 16,
-        fontWeight: "bold",
-    },
-    disabled: {
-        backgroundColor: "#cce0ff",
-    },
-});
+const createPrimaryStyles = (colorScheme: ColorSchemeName) =>
+    StyleSheet.create({
+        button: {
+            alignItems: "center",
+            backgroundColor: COLORS[colorScheme ?? "light"].tint,
+            borderRadius: 8,
+            padding: 12,
+            height: 45,
+        },
+        text: {
+            color: "#ffffff",
+            fontSize: 16,
+            fontWeight: "bold",
+        },
+        disabled: {
+            backgroundColor: "#cce0ff",
+        },
+    });
 
-// Secondary Button Styles
-const secondaryStyles = StyleSheet.create({
-    button: {
-        backgroundColor: "#e0e0e0",
-        paddingVertical: 12,
-        paddingHorizontal: 24,
-        borderRadius: 8,
-        alignItems: "center",
-    },
-    text: {
-        color: "#333333",
-        fontSize: 16,
-        fontWeight: "bold",
-    },
-    disabled: {
-        backgroundColor: "#f0f0f0",
-    },
-});
-
-export default Button;
-
-// Example Usage
-// <Button variant="primary" onPress={() => console.log('Primary button pressed')} title="Primary Button" />
-// <Button variant="secondary" onPress={() => console.log('Secondary button pressed')} title="Secondary Button" disabled />
+const createSecondaryStyles = (colorScheme: ColorSchemeName) =>
+    StyleSheet.create({
+        button: {
+            alignItems: "center",
+            backgroundColor: COLORS[colorScheme ?? "light"].tabIconSelected,
+            borderRadius: 8,
+            padding: 12,
+            height: 45,
+        },
+        text: {
+            color: "#000000",
+            fontSize: 16,
+            fontWeight: "bold",
+        },
+        disabled: {
+            backgroundColor: "#f2f2f2",
+        },
+    });

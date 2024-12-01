@@ -1,5 +1,5 @@
 // Domain
-import { type TWeatherResponse } from "@/domain/weather";
+import { type TWeatherResponse } from "@/domain/entities/weather";
 
 // Services
 import { fetchWeather } from "@/services/weather";

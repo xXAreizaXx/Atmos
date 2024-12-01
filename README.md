@@ -112,8 +112,11 @@ npm test
 ---
 
 ## 💡 **Próximos Pasos**
-- 🌐 Internacionalización de la aplicación.
-- 📱 Adaptar la aplicación para tablets y otros dispositivos.
+- 📊 **Gráficos de Clima**: Mostrar gráficos de temperatura y humedad.
+- 🛡️ **Autenticación**: Implementar un sistema de autenticación.
+- 📧 **Notificaciones**: Enviar notificaciones push.
+- 🌐 **Internacionalización**: Traducir la aplicación en varios idiomas
+- 📱 **Responsive**: Adaptar la aplicación para tablets y otros dispositivos.
 
 ---
 

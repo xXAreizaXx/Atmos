@@ -9,7 +9,7 @@ export default function LogoAtmos(props: SvgProps) {
         <Svg
             width={width}
             height={height}
-            viewBox="0 0 1000 600"
+            viewBox="80 0 900 600"
             {...otherProps}
         >
             <Path
