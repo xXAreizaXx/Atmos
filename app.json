@@ -4,6 +4,11 @@
       "adaptiveIcon": {
         "backgroundColor": "#ffffff",
         "foregroundImage": "./assets/images/adaptive-icon.png"
+      },
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyA5_VHpKzuqZBfXD8f7t5tPtbbHHHpKfGc"
+        }
       }
     },
     "experiments": {
@@ -11,13 +16,22 @@
     },
     "icon": "./assets/images/icon.png",
     "ios": {
+      "config": {
+        "googleMapsApiKey": "AIzaSyA5_VHpKzuqZBfXD8f7t5tPtbbHHHpKfGc"
+      },
       "supportsTablet": true
     },
     "name": "Atmos",
     "newArchEnabled": true,
     "orientation": "portrait",
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Permitir que $(PRODUCT_NAME) acceda a tu ubicación en todo momento y cuando esté en uso"
+        }
+      ]
     ],
     "scheme": "myapp",
     "slug": "Atmos",

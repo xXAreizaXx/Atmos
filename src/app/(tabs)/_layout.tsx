@@ -7,7 +7,7 @@ import { type ComponentProps } from "react";
 import { useColorScheme } from "react-native";
 
 // Constants
-import COLORS from "@constants/colors";
+import COLORS from "@/constants/colors";
 
 // Types
 type TTabBarIconProps = {
@@ -24,8 +24,20 @@ export default function TabLayout() {
     const colorScheme = useColorScheme();
 
     return (
-        <Tabs screenOptions={{ tabBarActiveTintColor: COLORS[colorScheme ?? "light"].tint }}>
-            <Tabs.Screen name="index" options={{ tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />, title: "Home" }} />
+        <Tabs
+            screenOptions={{
+                tabBarActiveTintColor: COLORS[colorScheme ?? "light"].tint
+            }}
+        >
+            <Tabs.Screen
+                name="index"
+                options={{
+                    headerShown: false,
+                    tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+                    tabBarStyle: { display: "none" },
+                    title: "Home"
+                }}
+            />
         </Tabs>
     );
 }

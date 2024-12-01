@@ -76,8 +76,9 @@ npm install
 Crea un archivo `.env` en la raíz del proyecto con la siguiente configuración:
 
 ```env
+EXPO_PUBLIC_API_KEY=fc8433366806bda576c8d9da86db798b
 EXPO_PUBLIC_API_URL=https://api.openweathermap.org/data/3.0/onecall
-EXPO_PUBLIC_API_KEY=4114a483282dd8b765cfcdeb3398a65e
+EXPO_PUBLIC_GOOGLE_API_KEY=AIzaSyA5_VHpKzuqZBfXD8f7t5tPtbbHHHpKfGc
 ```
 
 ### **4. Iniciar el Proyecto**
@@ -112,9 +113,7 @@ npm test
 
 ## 💡 **Próximos Pasos**
 - 🌐 Internacionalización de la aplicación.
-- 📍 Integrar mapa interactivo para seleccionar ciudades.
 - 📱 Adaptar la aplicación para tablets y otros dispositivos.
-- 🔄 Añadir funcionalidad de actualización automática.
 
 ---
 
