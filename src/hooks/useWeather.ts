@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { getWeather } from "@/data/weather";
 
 // Domain
-import { type TWeatherResponse } from "@/domain/weather";
+import { type TWeatherResponse } from "@/domain/entities/weather";
 
 // Types
 type TUseWeather = {
@@ -41,8 +41,8 @@ export const useWeather = (): TUseWeather => {
                 .catch((error) => {
                     throw new Error(error);
                 }),
-        // enabled: !!coordinates,
-        enabled: false,
+        enabled: !!coordinates,
+        // enabled: false,
     });
 
     // Functions

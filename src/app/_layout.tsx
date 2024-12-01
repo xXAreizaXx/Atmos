@@ -10,6 +10,7 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useColorScheme } from "react-native";
 import { useEffect } from "react";
+import Toast from "react-native-toast-message";
 import "react-native-reanimated";
 
 export { ErrorBoundary } from "expo-router";
@@ -53,6 +54,7 @@ function RootLayoutNav() {
                     <Stack.Screen name="+not-found" />
                 </Stack>
             </ThemeProvider>
+            <Toast />
         </QueryClientProvider>
     );
 }

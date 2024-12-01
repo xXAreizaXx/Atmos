@@ -10,12 +10,13 @@ type TTypography = {
   children: ReactNode;
   className?: TextStyle;
   color?: string;
+  fontWeight?: "normal" | "bold";
   variant?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "subtitle1" | "subtitle2" | "body1" | "body2";
 };
 
 export default function Typography(props: TTypography) {
     // Props
-    const { align, children, className, color, variant = "body1" } = props;
+    const { align, children, className, color, fontWeight, variant = "body1" } = props;
 
     // Hooks
     const colorScheme = useColorScheme();
@@ -30,6 +31,7 @@ export default function Typography(props: TTypography) {
         className,
         color ? { color } : null,
         styles.root,
+        fontWeight ? { fontWeight } : null,
         styles[variant],
     ].filter(Boolean);
 
@@ -74,8 +76,12 @@ const createStyles = (colorScheme: ColorSchemeName) =>
         h6: {
             fontSize: 20,
         },
+        bold: {
+            fontWeight: "bold",
+        },
         root: {
             color: COLORS[colorScheme ?? "light"].text,
+            fontFamily: "DMSans-Regular",
             fontWeight: "normal",
             margin: 0,
             overflow: "hidden",
@@ -86,4 +92,5 @@ const createStyles = (colorScheme: ColorSchemeName) =>
         subtitle2: {
             fontSize: 16,
         },
+
     });
