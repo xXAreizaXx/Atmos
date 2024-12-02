@@ -4,21 +4,22 @@ import * as Location from "expo-location";
 
 // ReactJS & React Native
 import { Platform } from "react-native";
-import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Data
-import { getWeather } from "@/data/weather";
+import { getWeather } from "@data/weather";
 
-// Domain
-import { type TWeatherResponse } from "@/domain/entities/weather";
+// Entities
+import { TWeatherResponse } from "@domain/entities/weather";
 
-// Types
 type TUseWeather = {
     coordinates: TCordinates | null;
-    data: TWeatherResponse;
-    searchWeather: () => void;
-    setCoordinates: (coordinates: { lat: number; lon: number }) => void;
+    data: TWeatherResponse | undefined;
+    isError: boolean;
+    isLoading: boolean;
+    saveCoordinates: (coordinates: TCordinates) => void;
 };
 
 type TCordinates = {
@@ -27,54 +28,82 @@ type TCordinates = {
 };
 
 export const useWeather = (): TUseWeather => {
-    // States
+    // State
     const [coordinates, setCoordinates] = useState<TCordinates | null>(null);
 
-    // Queries
-    const { data: weather, refetch } = useQuery<TWeatherResponse>({
+    // Query
+    const {
+        data: weather,
+        isLoading,
+        isError,
+    } = useQuery<TWeatherResponse>({
         queryKey: ["weather", coordinates],
         queryFn: () =>
             getWeather(coordinates?.lat as number, coordinates?.lon as number)
-                .then((res) => {
-                    return res;
-                })
+                .then((res) => res)
                 .catch((error) => {
                     throw new Error(error);
                 }),
         enabled: !!coordinates,
-        // enabled: false,
     });
 
     // Functions
-    const searchWeather = async () => {
-        setCoordinates(coordinates);
-        refetch();
+    const saveCoordinates = async (newCoordinates: TCordinates) => {
+        try {
+            await AsyncStorage.setItem(
+                "coordinates",
+                JSON.stringify(newCoordinates)
+            );
+            setCoordinates(newCoordinates);
+        } catch (error) {
+            console.log("Error saving coordinates:", error);
+        }
+    };
+
+    const getCurrentLocation = async () => {
+        if (Platform.OS === "android" && !Device.isDevice) {
+            console.log("Must use physical device for location");
+            return;
+        }
+
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== "granted") {
+            console.log("Permission to access location was denied");
+            return;
+        }
+
+        let location = await Location.getCurrentPositionAsync({});
+        const newCoordinates = {
+            lat: location.coords.latitude,
+            lon: location.coords.longitude,
+        };
+
+        saveCoordinates(newCoordinates);
     };
 
     // Effects
     useEffect(() => {
-        async function getCurrentLocation() {
-            if (Platform.OS === "android" && !Device.isDevice) return;
-
-            let { status } = await Location.requestForegroundPermissionsAsync();
-
-            if (status !== "granted") return;
-
-            let location = await Location.getCurrentPositionAsync({});
-
-            setCoordinates({
-                lat: location.coords.latitude,
-                lon: location.coords.longitude,
-            });
-        }
-
-        getCurrentLocation();
+        const loadStoredCoordinates = async () => {
+            try {
+                const storedCoordinates =
+                    await AsyncStorage.getItem("coordinates");
+                if (storedCoordinates) {
+                    setCoordinates(JSON.parse(storedCoordinates));
+                } else {
+                    await getCurrentLocation();
+                }
+            } catch (error) {
+                console.log("Error loading stored coordinates:", error);
+            }
+        };
+        loadStoredCoordinates();
     }, []);
 
     return {
         coordinates,
-        data: weather as TWeatherResponse,
-        searchWeather,
-        setCoordinates,
+        data: weather,
+        isError,
+        isLoading,
+        saveCoordinates,
     };
 };
