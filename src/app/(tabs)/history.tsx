@@ -25,7 +25,7 @@ export default function DetailScreen() {
                 <Button onPress={() => router.back()} variant="primary">
                     <FontAwesome5 name="arrow-left" size={20} color={COLORS[colorScheme ?? "light"].background} />
                 </Button>
-                <Typography variant="h4" fontWeight="bold">Detalle</Typography>
+                <Typography variant="h4" fontWeight="bold">Historial</Typography>
             </View>
         </View>
     );
