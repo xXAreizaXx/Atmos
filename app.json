@@ -9,7 +9,12 @@
         "googleMaps": {
           "apiKey": "AIzaSyA5_VHpKzuqZBfXD8f7t5tPtbbHHHpKfGc"
         }
-      }
+      },
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ],
+      "package": "com.xxareizaxx.Atmos"
     },
     "experiments": {
       "typedRoutes": true
@@ -19,7 +24,8 @@
       "config": {
         "googleMapsApiKey": "AIzaSyA5_VHpKzuqZBfXD8f7t5tPtbbHHHpKfGc"
       },
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.xxareizaxx.Atmos"
     },
     "name": "Atmos",
     "newArchEnabled": true,
@@ -46,6 +52,14 @@
       "bundler": "metro",
       "favicon": "./assets/images/favicon.png",
       "output": "static"
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "812a6a8b-ba86-47f9-946f-ab2314cc5b80"
+      }
     }
   }
 }
