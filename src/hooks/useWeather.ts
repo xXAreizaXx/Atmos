@@ -16,10 +16,12 @@ import { TWeatherResponse } from "@domain/entities/weather";
 
 type TUseWeather = {
     coordinates: TCordinates | null;
+    history: TCordinates[];
     data: TWeatherResponse | undefined;
     isError: boolean;
     isLoading: boolean;
     saveCoordinates: (coordinates: TCordinates) => void;
+    getHistory: () => Promise<TCordinates[]>;
 };
 
 type TCordinates = {
@@ -30,6 +32,7 @@ type TCordinates = {
 export const useWeather = (): TUseWeather => {
     // State
     const [coordinates, setCoordinates] = useState<TCordinates | null>(null);
+    const [history, setHistory] = useState<TCordinates[]>([]);
 
     // Query
     const {
@@ -50,11 +53,20 @@ export const useWeather = (): TUseWeather => {
     // Functions
     const saveCoordinates = async (newCoordinates: TCordinates) => {
         try {
+            // Save current coordinates
             await AsyncStorage.setItem(
                 "coordinates",
                 JSON.stringify(newCoordinates)
             );
             setCoordinates(newCoordinates);
+
+            // Update history
+            const updatedHistory = [...history, newCoordinates];
+            await AsyncStorage.setItem(
+                "history",
+                JSON.stringify(updatedHistory)
+            );
+            setHistory(updatedHistory);
         } catch (error) {
             console.log("Error saving coordinates:", error);
         }
@@ -81,10 +93,21 @@ export const useWeather = (): TUseWeather => {
         saveCoordinates(newCoordinates);
     };
 
+    const getHistory = async (): Promise<TCordinates[]> => {
+        try {
+            const storedHistory = await AsyncStorage.getItem("history");
+            return storedHistory ? JSON.parse(storedHistory) : [];
+        } catch (error) {
+            console.log("Error retrieving history:", error);
+            return [];
+        }
+    };
+
     // Effects
     useEffect(() => {
-        const loadStoredCoordinates = async () => {
+        const loadStoredData = async () => {
             try {
+                // Load coordinates
                 const storedCoordinates =
                     await AsyncStorage.getItem("coordinates");
                 if (storedCoordinates) {
@@ -92,18 +115,24 @@ export const useWeather = (): TUseWeather => {
                 } else {
                     await getCurrentLocation();
                 }
+
+                // Load history
+                const storedHistory = await getHistory();
+                setHistory(storedHistory);
             } catch (error) {
-                console.log("Error loading stored coordinates:", error);
+                console.log("Error loading stored data:", error);
             }
         };
-        loadStoredCoordinates();
+        loadStoredData();
     }, []);
 
     return {
         coordinates,
+        history,
         data: weather,
         isError,
         isLoading,
         saveCoordinates,
+        getHistory,
     };
 };

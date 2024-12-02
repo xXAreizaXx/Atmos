@@ -91,12 +91,16 @@ npm start
 ### 📍 Pantalla Principal
 Muestra un campo de búsqueda y la información básica del clima.
 
-![Home Screen](https://i.ibb.co/T4c6pPK/dark.jpg)
+![Home Ligth Screen](https://i.ibb.co/T4c6pPK/dark.jpg)
+![Home Dark Screen](https://i.ibb.co/1m4KCx8/ligth.jpg)
 
 ### 📍 Pantalla de Detalles
 Incluye información adicional sobre el clima.
+![Details Screen](https://i.ibb.co/KwnWRjv/detail.jpg)
 
-![Details Screen](https://i.ibb.co/1m4KCx8/ligth.jpg)
+### 📍 Pantalla de Detalles
+Historial de búsquedas guardado en `AsyncStorage`.
+![History Screen](https://i.ibb.co/3swHRJz/history.jpg)
 
 ---
 
