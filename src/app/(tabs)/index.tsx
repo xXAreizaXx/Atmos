@@ -25,7 +25,7 @@ import COLORS from "@constants/colors";
 
 import "react-native-get-random-values";
 
-export default function App() {
+export default function MainScreen() {
     // Hooks
     const { data: weather, isError, isLoading, saveCoordinates } = useWeather();
     const colorScheme = useColorScheme();
