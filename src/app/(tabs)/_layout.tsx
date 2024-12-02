@@ -47,6 +47,15 @@ export default function TabLayout() {
                     title: "Detail"
                 }}
             />
+            <Tabs.Screen
+                name="history"
+                options={{
+                    headerShown: false,
+                    tabBarIcon: ({ color }) => <TabBarIcon name="history" color={color} />,
+                    tabBarStyle: { display: "none" },
+                    title: "History"
+                }}
+            />
         </Tabs>
     );
 }

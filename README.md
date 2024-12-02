@@ -35,26 +35,24 @@ El proyecto sigue el patrón **Clean Architecture**, separando responsabilidades
 src/
 ├── app/                     # Rutas principales (Expo Router)
 ├── components/              # Componentes reutilizables (UI)
-├── core/                    # Configuración global y constantes
+├── constants/               # Constantes y variables globales
 ├── data/                    # Fuentes de datos y repositorios
 ├── domain/                  # Lógica de negocio y casos de uso
 ├── hooks/                   # Hooks personalizados
-├── styles/                  # Estilos globales
-└── types/                   # Tipos de datos
+├── services/                # Servicios y clientes Axios
 ```
 
 ---
 
 ## ⚙️ **Tecnologías Utilizadas**
 
-| Herramienta                  | Descripción                                                                 |
-|------------------------------|-----------------------------------------------------------------------------|
+| Herramienta                  | Descripción                                                                |
+|------------------------------|----------------------------------------------------------------------------|
 | **React Native**             | Framework para construir aplicaciones móviles nativas.                     |
 | **Expo Router**              | Navegación basada en rutas para aplicaciones Expo.                         |
 | **TypeScript**               | Superset de JavaScript para añadir tipado estático.                        |
 | **Axios**                    | Cliente HTTP para consumir APIs.                                           |
 | **React Query**              | Manejo de estados de datos asíncronos.                                     |
-| **Styled Components**        | Librería para estilos dinámicos en componentes.                            |
 | **OpenWeather API**          | API pública para obtener información del clima.                            |
 
 ---
@@ -93,12 +91,12 @@ npm start
 ### 📍 Pantalla Principal
 Muestra un campo de búsqueda y la información básica del clima.
 
-![Home Screen](https://via.placeholder.com/300x600)
+![Home Screen](https://ibb.co/K26dRVN)
 
 ### 📍 Pantalla de Detalles
 Incluye información adicional sobre el clima.
 
-![Details Screen](https://via.placeholder.com/300x600)
+![Details Screen](https://ibb.co/qr29Hwk)
 
 ---
 

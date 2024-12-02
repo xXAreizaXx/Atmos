@@ -87,7 +87,7 @@ export default function App() {
                     query={{ key: process.env.EXPO_PUBLIC_GOOGLE_API_KEY, language: "es"}}
                 />
 
-                <Button onPress={() => router.push("/detail")} variant="primary">
+                <Button onPress={() => router.push("/history")} variant="primary">
                     <FontAwesome5 name="history" size={20} color={COLORS[colorScheme ?? "light"].background} />
                 </Button>
             </View>
@@ -157,7 +157,7 @@ const createStyles = (colorScheme: ColorSchemeName) =>
         container: {
             backgroundColor: COLORS[colorScheme ?? "light"].background,
             flex: 1,
-            gap: 8,
+            gap: 12,
             padding: 16,
             paddingVertical: Constants.statusBarHeight,
         },
@@ -167,20 +167,26 @@ const createStyles = (colorScheme: ColorSchemeName) =>
             justifyContent: "space-between",
         },
         inputContainer: {
-            gap: 8,
+            backgroundColor: COLORS[colorScheme ?? "light"].surface,
+            borderRadius: 8,
             flexDirection: "row",
+            gap: 8,
+            padding: 8,
+            shadowColor: COLORS[colorScheme ?? "light"].border,
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.1,
+            shadowRadius: 4,
         },
         weatherContainer: {
             alignItems: "flex-start",
-            backgroundColor: "white",
+            backgroundColor: COLORS[colorScheme ?? "light"].surface,
             borderRadius: 10,
             display: "flex",
             elevation: 5,
             flexDirection: "row",
             justifyContent: "space-around",
-            marginVertical: 10,
             padding: 16,
-            shadowColor: "#000",
+            shadowColor: COLORS[colorScheme ?? "light"].border,
             shadowOffset: { width: 0, height: 2 },
             shadowOpacity: 0.1,
             shadowRadius: 4,
@@ -197,16 +203,24 @@ const createStyles = (colorScheme: ColorSchemeName) =>
         weatherIcon: {
             borderRadius: 100,
             borderStyle: "solid",
-            backgroundColor: COLORS[colorScheme ?? "light"].background,
+            backgroundColor: COLORS[colorScheme ?? "light"].highlight,
             borderWidth: 1,
-            borderColor: COLORS[colorScheme ?? "light"].tint,
+            borderColor: COLORS[colorScheme ?? "light"].primary,
             width: 100,
             height: 100,
         },
         mapStyle: {
+            borderColor: COLORS[colorScheme ?? "light"].border,
             borderRadius: 10,
+            borderWidth: 1,
             height: Dimensions.get("window").height - 400,
             width: Dimensions.get("window").width - 32,
-            marginTop: 16,
-        }
+        },
+        textInput: {
+            backgroundColor: COLORS[colorScheme ?? "light"].gray,
+            color: COLORS[colorScheme ?? "light"].text,
+            fontSize: 16,
+            borderRadius: 8,
+            paddingHorizontal: 12,
+        },
     });
