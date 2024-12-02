@@ -12,6 +12,8 @@ import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 
 // Components
 import Button from "@components/Buttons";
+import Error from "@components/Error";
+import Loader from "@components/Loader";
 import LogoAtmos from "@components/LogoAtmos";
 import Typography from "@components/Typography";
 
@@ -25,15 +27,13 @@ import "react-native-get-random-values";
 
 export default function App() {
     // Hooks
+    const { data: weather, isError, isLoading, saveCoordinates } = useWeather();
     const colorScheme = useColorScheme();
     const router = useRouter();
     const styles = createStyles(colorScheme);
 
     // Ref
     const mapRef = useRef<MapView>(null);
-
-    // Hooks
-    const { data: weather, setCoordinates } = useWeather();
 
     // States
     const [place, setPlace] = useState<string | null>(null);
@@ -42,6 +42,10 @@ export default function App() {
     const formatterText = (text: string) => {
         return text.split(" ").map((word) => word[0].toUpperCase() + word.slice(1)).join(" ");
     };
+
+    if (isLoading) return <Loader />;
+    
+    if (isError) return <Error />;
 
     return (
         <View style={styles.container}>
@@ -56,7 +60,7 @@ export default function App() {
                     GooglePlacesDetailsQuery={{ fields: "geometry" }}
                     onPress={(data, details) => {
                         setPlace(data.description);
-                        setCoordinates({
+                        saveCoordinates({
                             lat: details?.geometry?.location.lat as number,
                             lon: details?.geometry?.location.lng as number,
                         });
