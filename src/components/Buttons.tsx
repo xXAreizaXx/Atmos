@@ -54,7 +54,7 @@ const createSecondaryStyles = (colorScheme: ColorSchemeName) =>
     StyleSheet.create({
         button: {
             alignItems: "center",
-            backgroundColor: COLORS[colorScheme ?? "light"].tabIconSelected,
+            backgroundColor: COLORS[colorScheme ?? "light"].secondary,
             borderRadius: 8,
             padding: 12,
             height: 45,
